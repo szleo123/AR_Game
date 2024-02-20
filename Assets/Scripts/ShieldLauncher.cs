@@ -12,7 +12,7 @@ namespace MyFirstARGame
     public class Launcher : PressInputBase
     {
         [SerializeField]
-        private Rigidbody shieldPrefab;
+        private GameObject shieldPrefab;
         private GameObject shield; 
 
         protected override void OnPressBegan(Vector3 position)
@@ -27,13 +27,20 @@ namespace MyFirstARGame
 
             // We send our current player number as data so that the projectile can pick its material based on the player that owns it.
             var initialData = new object[] { PhotonNetwork.LocalPlayer.ActorNumber };
-
-            shield = PhotonNetwork.Instantiate(this.shieldPrefab.name, Vector3.zero, Quaternion.identity, data: initialData);
+            
+            PlayerInfo playerinfo = GameObject.Find("PlayerInfo").GetComponent<PlayerInfo>(); 
+            if (playerinfo.shieldCount > 0)
+            {
+                shield = PhotonNetwork.Instantiate(this.shieldPrefab.name, Vector3.zero, Quaternion.identity, data: initialData); 
+            }
         }     
 
         protected override void OnPressCancel()
         {
+            if (shield)
+            {
             PhotonNetwork.Destroy(shield);
+            }
         }
     }
 }

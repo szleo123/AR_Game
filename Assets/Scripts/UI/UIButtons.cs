@@ -44,7 +44,7 @@
             this.SetManipulateState(!this.isManipulating);
         }
 
-        public void ToggleModeButtonPressed()
+        public void ToggleShieldButtonPressed()
         {
             this.SetManipulateState(false);
             this.SetPlacementState(false); 
