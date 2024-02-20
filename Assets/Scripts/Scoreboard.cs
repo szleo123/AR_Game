@@ -53,7 +53,7 @@ namespace MyFirstARGame
 
         public int getShield(string playerName)
         {
-            if (this.scores.ContainsKey(playerName))
+            if (this.shields.ContainsKey(playerName))
             {
                 return this.shields[playerName];
             }else
