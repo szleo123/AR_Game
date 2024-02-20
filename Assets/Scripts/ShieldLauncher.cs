@@ -35,6 +35,18 @@ namespace MyFirstARGame
             }
         }     
 
+        protected override void OnPress(Vector3 position)
+        {
+            if (shield)
+            {
+                PlayerInfo playerinfo = GameObject.Find("PlayerInfo").GetComponent<PlayerInfo>(); 
+                if (playerinfo.shieldCount < 1)
+                {
+                    PhotonNetwork.Destroy(shield);
+                }
+            }
+        }
+
         protected override void OnPressCancel()
         {
             if (shield)
