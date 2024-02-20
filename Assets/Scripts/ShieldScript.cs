@@ -9,7 +9,7 @@ namespace MyFirstARGame
     public class ShieldScript: MonoBehaviourPunCallbacks
     {
         public Camera playerCamera; 
-        public PlayerInfo playinfo; 
+        public PlayerInfo playerinfo; 
 
         public float shieldDistance = 0.3f; 
         // Start is called before the first frame update
