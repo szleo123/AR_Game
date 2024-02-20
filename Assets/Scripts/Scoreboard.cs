@@ -73,7 +73,7 @@ namespace MyFirstARGame
             }
             foreach (var s in this.shields)
             {
-                GUILayout.Label($"{s.Key}: {s.Value}", new GUIStyle { normal = new GUIStyleState { textColor = Color.black }, fontSize = 22 });
+                GUILayout.Label($"{s.Key}: shield {s.Value}", new GUIStyle { normal = new GUIStyleState { textColor = Color.black }, fontSize = 22 });
             }
             GUILayout.FlexibleSpace();
             GUILayout.EndVertical();
