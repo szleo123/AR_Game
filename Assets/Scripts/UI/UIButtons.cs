@@ -18,24 +18,37 @@
         [SerializeField]
         private GameObject toggleManipulateButton;
 
+        [SerializeField]
+        private GameObject toggleShieldButton; 
+
         private bool isPlacing;
         private bool isManipulating;
+        public bool isShielding;
 
         /// <summary>
         /// Gets a value indicating whether the user is currently idle, i.e., no special UI mode is active.
         /// </summary>
-        public bool IsIdle => !this.isPlacing && !this.isManipulating;
+        public bool IsIdle => !this.isPlacing && !this.isManipulating && !this.isShielding;
 
         public void TogglePlacementButtonPressed()
         {
             this.SetManipulateState(false);
+            this.SetShieldState(false); 
             this.SetPlacementState(!this.isPlacing);
         }
 
         public void ToggleManipulateButtonPressed()
         {
             this.SetPlacementState(false);
+            this.SetShieldState(false);
             this.SetManipulateState(!this.isManipulating);
+        }
+
+        public void ToggleModeButtonPressed()
+        {
+            this.SetManipulateState(false);
+            this.SetPlacementState(false); 
+            this.SetShieldState(!this.isShielding);
         }
 
         /// <summary>
@@ -87,6 +100,11 @@
                     }
                 }
             }
+        }
+
+        private void SetShieldState(bool state)
+        {
+            this.isShielding = state; 
         }
 
         private void SetButtonState(GameObject button, bool state)

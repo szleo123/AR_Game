@@ -56,7 +56,7 @@
             rigidbody.velocity = ray.direction * initialSpeed;
 
             // Update the score 
-            var networkCommunication = FindObjectOfType<NetworkCommunication>(); 
+            // var networkCommunication = FindObjectOfType<NetworkCommunication>(); 
             // networkCommunication.IncrementScore();
         }
 
