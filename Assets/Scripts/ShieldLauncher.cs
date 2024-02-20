@@ -13,7 +13,6 @@ namespace MyFirstARGame
     {
         [SerializeField]
         private GameObject shieldPrefab;
-        private GameObject shield; 
 
         protected override void OnPressBegan(Vector3 position)
         {
@@ -31,28 +30,18 @@ namespace MyFirstARGame
             PlayerInfo playerinfo = GameObject.Find("PlayerInfo").GetComponent<PlayerInfo>(); 
             if (playerinfo.shieldCount > 0)
             {
-                shield = PhotonNetwork.Instantiate(this.shieldPrefab.name, Vector3.zero, Quaternion.identity, data: initialData); 
+                var shield = PhotonNetwork.Instantiate(this.shieldPrefab.name, Vector3.zero, Quaternion.identity, data: initialData); 
             }
         }     
 
         protected override void OnPress(Vector3 position)
         {
-            if (shield)
-            {
-                PlayerInfo playerinfo = GameObject.Find("PlayerInfo").GetComponent<PlayerInfo>(); 
-                if (playerinfo.shieldCount < 1)
-                {
-                    PhotonNetwork.Destroy(shield);
-                }
-            }
+
         }
 
         protected override void OnPressCancel()
         {
-            if (shield)
-            {
-            PhotonNetwork.Destroy(shield);
-            }
+
         }
     }
 }
