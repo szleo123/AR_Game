@@ -100,6 +100,9 @@ namespace MyFirstARGame
                 this.NetworkCommunication = PhotonNetwork.Instantiate("NetworkManager", Vector3.zero, Quaternion.identity).GetComponent<NetworkCommunication>();
             }
 
+            // Create the body for the player 
+            PhotonNetwork.Instantiate("PlayerBody", Vector3.zero, Quaternion.identity); 
+
             this.JoinedRoom?.Invoke(this);
         }
 

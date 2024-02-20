@@ -6,7 +6,7 @@ namespace MyFirstARGame
     /// <summary>
     /// Controls projectile behaviour. In our case it currently only changes the material of the projectile based on the player that owns it.
     /// </summary>
-    public class ProjectileBehaviour : MonoBehaviour
+    public class ProjectileBehaviour : MonoBehaviourPunCallbacks
     {
         [SerializeField]
         private Material[] projectileMaterials;
@@ -22,6 +22,15 @@ namespace MyFirstARGame
             {
                 var material = this.projectileMaterials[playerId % this.projectileMaterials.Length];
                 this.transform.GetComponent<Renderer>().material = material;
+            }
+        }
+
+        void OnCollisionEnter(Collision collision){
+            Collider collider = collision.collider; 
+            if (photonView.IsMine){
+                // Update the score 
+                var networkCommunication = FindObjectOfType<NetworkCommunication>(); 
+                networkCommunication.IncrementScore();
             }
         }
     }

@@ -1,6 +1,8 @@
 ﻿namespace MyFirstARGame
 {
     using UnityEngine;
+    using System.Collections; 
+    using System.Collections.Generic; 
     using Photon.Pun;
 
     /// <summary>
@@ -28,6 +30,16 @@
             // We send our current player number as data so that the projectile can pick its material based on the player that owns it.
             var initialData = new object[] { PhotonNetwork.LocalPlayer.ActorNumber };
 
+            // Ensure that bullets are shot with constant invertal
+            PlayerInfo playerinfo = GameObject.Find("PlayerInfo").GetComponent<PlayerInfo>(); 
+            float interval = playerinfo.shootInterval; 
+            float curTime = playerinfo.curTime; 
+            if (curTime < interval){
+                return; 
+            }else {
+                playerinfo.curTime = 0; 
+            }
+
             // Cast a ray from the touch point to the world. We use the camera position as the origin and the ray direction as the
             // velocity direction.
             var ray = this.GetComponent<Camera>().ScreenPointToRay(position);
@@ -43,7 +55,9 @@
 
             // Update the score 
             var networkCommunication = FindObjectOfType<NetworkCommunication>(); 
-            networkCommunication.IncrementScore();
+            // networkCommunication.IncrementScore();
         }
+
+        
     }
 }
