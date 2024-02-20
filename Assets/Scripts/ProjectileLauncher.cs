@@ -17,6 +17,8 @@
         [SerializeField]
         private float initialSpeed = 25;
 
+        [SerializeField]
+        private float rayOffset = 0.2f; 
         protected override void OnPressBegan(Vector3 position)
         {
             if (this.projectilePrefab == null || !NetworkLauncher.Singleton.HasJoinedRoom)
