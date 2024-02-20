@@ -42,7 +42,7 @@ namespace MyFirstARGame
         void OnCollisionEnter(Collision collision){
             Collider collider = collision.collider; 
             PhotonView colPhotonView = collider.gameObject.GetComponent<PhotonView>(); 
-            if (collider.CompareTag("Bullet") && !colPhotonView.IsMine){
+            if (collider.CompareTag("Bullet")){
                 PlayerInfo playerinfo = GameObject.Find("PlayerInfo").GetComponent<PlayerInfo>();
                 playerinfo.shieldCount -= 1;   
             }
