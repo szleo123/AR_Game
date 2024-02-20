@@ -29,11 +29,31 @@ namespace MyFirstARGame
             this.photonView.RPC("Network_SetPlayerScore", RpcTarget.All, playerName, currentScore + 1); 
         }
 
+        public void DecrementShield()
+        {
+            var playerName = $"Player {PhotonNetwork.LocalPlayer.ActorNumber}"; 
+            var currentShield = this.scoreboard.getShield(playerName);
+            this.photonView.RPC("Network_SetPlayerShield", RpcTarget.All, playerName, currentShield + 1);
+        }
+
+        public int getShield()
+        {
+            var playerName = $"Player {PhotonNetwork.LocalPlayer.ActorNumber}"; 
+            var currentShield = this.scoreboard.getShield(playerName);
+            return currentShield;
+        }
+
         [PunRPC]
         public void Network_SetPlayerScore(string playerName, int score)
         {
             Debug.Log($"Player {playerName} scored!"); 
             this.scoreboard.setScore(playerName, score);
+        }
+
+        [PunRPC]
+        public void Network_SetPlayerShield(string playerName, int shield)
+        {
+            this.scoreboard.setShield(playerName, shield);
         }
 
         public void UpdateForNewPlayer(Photon.Realtime.Player player)

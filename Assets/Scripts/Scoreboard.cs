@@ -7,10 +7,12 @@ namespace MyFirstARGame
     public class Scoreboard : MonoBehaviour
     {
         private Dictionary<string, int> scores; 
+        private Dictionary<string, int> shields;
         // Start is called before the first frame update
         private void Start()
         {
             this.scores = new Dictionary<string, int>();
+            this.shields = new Dictionary<string, int>(); 
         }
 
         // Update is called once per frame
@@ -32,6 +34,28 @@ namespace MyFirstARGame
             if (this.scores.ContainsKey(playerName))
             {
                 return this.scores[playerName];
+            }else
+            {
+                return 0;
+            }
+        }
+
+        public void setShield(string playerName, int shield)
+        {
+            if (this.shields.ContainsKey(playerName))
+            {
+                this.shields[playerName] = shield;
+            }else
+            {
+                this.shields.Add(playerName, shield);
+            }
+        }
+
+        public int getShield(string playerName)
+        {
+            if (this.scores.ContainsKey(playerName))
+            {
+                return this.shields[playerName];
             }else
             {
                 return 0;

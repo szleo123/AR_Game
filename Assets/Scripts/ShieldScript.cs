@@ -43,8 +43,9 @@ namespace MyFirstARGame
             Collider collider = collision.collider; 
             PhotonView colPhotonView = collider.gameObject.GetComponent<PhotonView>(); 
             if (collider.CompareTag("Bullet")){
-                PlayerInfo playerinfo = GameObject.Find("PlayerInfo").GetComponent<PlayerInfo>();
-                playerinfo.shieldCount -= 1;   
+                // Update the score 
+                var networkCommunication = FindObjectOfType<NetworkCommunication>(); 
+                networkCommunication.DecrementShield();
             }
         }
     }

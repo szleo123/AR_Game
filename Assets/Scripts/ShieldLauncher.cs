@@ -13,7 +13,7 @@ namespace MyFirstARGame
     {
         [SerializeField]
         private GameObject shieldPrefab;
-
+        private GameObject shield;
         protected override void OnPressBegan(Vector3 position)
         {
             if (this.shieldPrefab == null || !NetworkLauncher.Singleton.HasJoinedRoom)
@@ -27,21 +27,31 @@ namespace MyFirstARGame
             // We send our current player number as data so that the projectile can pick its material based on the player that owns it.
             var initialData = new object[] { PhotonNetwork.LocalPlayer.ActorNumber };
             
-            PlayerInfo playerinfo = GameObject.Find("PlayerInfo").GetComponent<PlayerInfo>(); 
-            if (playerinfo.shieldCount > 0)
+            var networkCommunication = FindObjectOfType<NetworkCommunication>(); 
+            if (networkCommunication.getShield() < 5)
             {
-                var shield = PhotonNetwork.Instantiate(this.shieldPrefab.name, Vector3.zero, Quaternion.identity, data: initialData); 
+                shield = PhotonNetwork.Instantiate(this.shieldPrefab.name, Vector3.zero, Quaternion.identity, data: initialData); 
             }
         }     
 
         protected override void OnPress(Vector3 position)
         {
-
+            if (shield)
+            {
+                var networkCommunication = FindObjectOfType<NetworkCommunication>(); 
+                if (networkCommunication.getShield() >= 5)
+                {
+                    PhotonNetwork.Destroy(shield);
+                }
+            }
         }
 
         protected override void OnPressCancel()
         {
-
+            if (shield)
+            {
+            PhotonNetwork.Destroy(shield);
+            }
         }
     }
 }
