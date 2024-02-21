@@ -46,9 +46,9 @@ namespace MyFirstARGame
         {
             string playerName;
             if (PhotonNetwork.LocalPlayer.ActorNumber > 1){
-                playerName = $"Player 1"; 
-            } else {
                 playerName = $"Player 2"; 
+            } else {
+                playerName = $"Player 1"; 
             }
             var currentShield = this.scoreboard.getShield(playerName);
             return currentShield;
