@@ -31,10 +31,11 @@ namespace MyFirstARGame
 
         public void DecrementShield()
         {
+            string playerName;
             if (PhotonNetwork.LocalPlayer.ActorNumber > 1){
-                var playerName = $"Player 1"; 
+                playerName = $"Player 1"; 
             } else {
-                var playerName = $"Player 2"; 
+                playerName = $"Player 2"; 
             }
             
             var currentShield = this.scoreboard.getShield(playerName);
@@ -43,10 +44,11 @@ namespace MyFirstARGame
 
         public int getShield()
         {
+            string playerName;
             if (PhotonNetwork.LocalPlayer.ActorNumber > 1){
-                var playerName = $"Player 1"; 
+                playerName = $"Player 1"; 
             } else {
-                var playerName = $"Player 2"; 
+                playerName = $"Player 2"; 
             }
             var currentShield = this.scoreboard.getShield(playerName);
             return currentShield;
