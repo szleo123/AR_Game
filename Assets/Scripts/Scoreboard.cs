@@ -19,6 +19,13 @@ namespace MyFirstARGame
         // Update is called once per frame
         void Update(){}
 
+        public void reset()
+        {
+            this.scores.Clear(); 
+            this.shields.Clear();
+            ended = false; 
+        }
+
         public void setScore(string playerName, int score)
         {
             if (this.scores.ContainsKey(playerName))

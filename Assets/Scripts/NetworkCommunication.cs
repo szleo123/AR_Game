@@ -61,6 +61,11 @@ namespace MyFirstARGame
             return currentShield;
         }
 
+        public void Reset()
+        {
+            this.photonView.RPC("Network_ResetGame", RpcTarget.All);
+        }
+
         [PunRPC]
         public void Network_SetPlayerScore(string playerName, int score)
         {
@@ -72,6 +77,12 @@ namespace MyFirstARGame
         public void Network_SetPlayerShield(string playerName, int shield)
         {
             this.scoreboard.setShield(playerName, shield);
+        }
+
+        [PunRPC]
+        public void Network_ResetGame()
+        {
+            this.scoreboard.reset(); 
         }
 
         public void UpdateForNewPlayer(Photon.Realtime.Player player)

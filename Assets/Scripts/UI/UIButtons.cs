@@ -111,5 +111,11 @@
         {
             button.GetComponent<Image>().color = state ? Color.green : Color.white;
         }
+
+        private void Reset()
+        {
+            var networkCommunication = FindObjectOfType<NetworkCommunication>(); 
+            networkCommunication.Reset();
+        }
     }
 }
