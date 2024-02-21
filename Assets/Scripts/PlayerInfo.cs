@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 namespace MyFirstARGame
 {
-    public class PlayerInfo : MonoBehaviour
+    public class PlayerInfo :  MonoBehaviourPunCallbacks
     {
         public float shootInterval = 1.0f; 
         public float curTime = 0; 
@@ -18,6 +19,10 @@ namespace MyFirstARGame
         void Update()
         {
             curTime += Time.deltaTime; 
+
+            // catch current score 
+            var networkCommunication = FindObjectOfType<NetworkCommunication>(); 
+            var s = networkCommunication.getScore(); 
         }
     }
 }

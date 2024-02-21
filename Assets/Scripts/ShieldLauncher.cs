@@ -34,18 +34,6 @@ namespace MyFirstARGame
             }
         }     
 
-        protected override void OnPress(Vector3 position)
-        {
-            if (shield)
-            {
-                var networkCommunication = FindObjectOfType<NetworkCommunication>(); 
-                if (networkCommunication.getShield() >= 5)
-                {
-                    PhotonNetwork.Destroy(shield);
-                }
-            }
-        }
-
         protected override void OnPressCancel()
         {
             if (shield)

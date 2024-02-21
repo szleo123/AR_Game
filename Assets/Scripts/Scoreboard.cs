@@ -8,6 +8,7 @@ namespace MyFirstARGame
     {
         private Dictionary<string, int> scores; 
         private Dictionary<string, int> shields;
+        private bool ended = false; 
         // Start is called before the first frame update
         private void Start()
         {
@@ -67,14 +68,35 @@ namespace MyFirstARGame
             GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height));
             GUILayout.BeginVertical();
             GUILayout.FlexibleSpace();
-            foreach (var score in this.scores)
+            foreach(var score in this.scores)
             {
-                GUILayout.Label($"{score.Key}: {score.Value}", new GUIStyle { normal = new GUIStyleState { textColor = Color.black }, fontSize = 22 });
+                if (score.Value >= 5)
+                {
+                    ended = true;
+                }
             }
-            foreach (var s in this.shields)
+            if (!ended)
             {
-                GUILayout.Label($"{s.Key}: shield {s.Value}", new GUIStyle { normal = new GUIStyleState { textColor = Color.black }, fontSize = 22 });
+                foreach (var score in this.scores)
+                {
+                    GUILayout.Label($"{score.Key}: {score.Value}", new GUIStyle { normal = new GUIStyleState { textColor = Color.black }, fontSize = 22 });
+                }
+                foreach (var s in this.shields)
+                {
+                    GUILayout.Label($"{s.Key}: shield {s.Value}", new GUIStyle { normal = new GUIStyleState { textColor = Color.black }, fontSize = 22 });
+                }
+            } else
+            {
+                foreach(var score in this.scores)
+                {
+                    if (score.Value >= 5){
+                        GUILayout.Label($"{score.Key}: You win!", new GUIStyle { normal = new GUIStyleState { textColor = Color.black }, fontSize = 22 });
+                    } else {
+                        GUILayout.Label($"{score.Key}: You lose!", new GUIStyle { normal = new GUIStyleState { textColor = Color.black }, fontSize = 22 });
+                    }
+                }
             }
+            
             GUILayout.FlexibleSpace();
             GUILayout.EndVertical();
             GUILayout.EndArea();
