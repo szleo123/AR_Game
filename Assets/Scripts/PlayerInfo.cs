@@ -19,10 +19,6 @@ namespace MyFirstARGame
         void Update()
         {
             curTime += Time.deltaTime; 
-
-            // catch current score 
-            var networkCommunication = FindObjectOfType<NetworkCommunication>(); 
-            var s = networkCommunication.getScore(); 
         }
     }
 }
