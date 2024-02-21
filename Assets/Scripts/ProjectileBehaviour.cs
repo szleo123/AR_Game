@@ -11,6 +11,9 @@ namespace MyFirstARGame
         [SerializeField]
         private Material[] projectileMaterials;
 
+        [SerializeField]
+        private GameObject hitPrefeb; 
+
         private void Awake()
         {
             // Pick a material based on our player number so that we can distinguish between projectiles. We use the player number
@@ -32,6 +35,7 @@ namespace MyFirstARGame
                 // Update the score 
                 var networkCommunication = FindObjectOfType<NetworkCommunication>(); 
                 networkCommunication.IncrementScore();
+                PhotonNetwork.Instantiate(this.hitPrefeb.name, this.transform.position, Quaternion.identity);
             }
         }
     }
