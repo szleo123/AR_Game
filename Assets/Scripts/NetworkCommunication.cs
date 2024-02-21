@@ -31,14 +31,23 @@ namespace MyFirstARGame
 
         public void DecrementShield()
         {
-            var playerName = $"Player {PhotonNetwork.LocalPlayer.ActorNumber}"; 
+            if (PhotonNetwork.LocalPlayer.ActorNumber > 1){
+                var playerName = $"Player 1"; 
+            } else {
+                var playerName = $"Player 2"; 
+            }
+            
             var currentShield = this.scoreboard.getShield(playerName);
             this.photonView.RPC("Network_SetPlayerShield", RpcTarget.All, playerName, currentShield + 1);
         }
 
         public int getShield()
         {
-            var playerName = $"Player {PhotonNetwork.LocalPlayer.ActorNumber}"; 
+            if (PhotonNetwork.LocalPlayer.ActorNumber > 1){
+                var playerName = $"Player 1"; 
+            } else {
+                var playerName = $"Player 2"; 
+            }
             var currentShield = this.scoreboard.getShield(playerName);
             return currentShield;
         }
