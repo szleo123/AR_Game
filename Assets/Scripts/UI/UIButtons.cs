@@ -21,6 +21,9 @@
         [SerializeField]
         private GameObject toggleShieldButton; 
 
+        [SerializeField]
+        private GameObject toggleReset; 
+
         private bool isPlacing;
         private bool isManipulating;
         public bool isShielding;
@@ -49,6 +52,11 @@
             this.SetManipulateState(false);
             this.SetPlacementState(false); 
             this.SetShieldState(!this.isShielding);
+        }
+
+        public void ToggleReset()
+        {
+            this.Reset();
         }
 
         /// <summary>
